@@ -15,6 +15,7 @@ const SearchScreen = ({ navigation }) => {
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCFJtQ1-OfZNz4p_kDz_Lhkw&maxResults=10&q=songs&type=video&key=AIzaSyA35a1ebn-cJ21TsO3iLlrz8yCJIHIoDVQ`)
         .then(res => res.json())
         .then(data => {
+            console.log(data.items);
             setLoading(false);
             setMiniCard(data.items);
         });

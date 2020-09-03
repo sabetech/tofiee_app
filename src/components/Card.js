@@ -1,23 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+//import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 
-const Card = () => {
+const Card = (props) => {
+    const navigation = useNavigation();
+
     return (
-        <View style={styles.card}>
-            <Image 
-            source={{uri: 'https://images.unsplash.com/photo-1582719471180-aad67c6023c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80'}} 
-            style={styles.imageDim}
-            />
-            <View style = {styles.videoTitle}>
-                <Text style={{fontSize:25}}
-                ellipsizeMode="tail"
-                numberOfLines={2}>
-                    This is the video Title chechk out the width o fht etext distin
-                </Text>
-                <Text style={{fontSize: 16}}>This is the video Description</Text>
+        <TouchableOpacity
+            onPress = {() => {
+                navigation.navigate("videoPlayer", {videoId:props.videoId, title:props.title})
+                }
+            }
+        >
+            <View style={styles.card}>
+                <Image 
+                source={{uri: `https://unsplash.com/photos/ktrLmQlZLUI/download?force=true&w=640`}} 
+                style={styles.imageDim}
+                />
+                <View style = {styles.videoTitle}>
+                    <Text style={{fontSize:25}}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}>
+                        {props.title}
+                    </Text>
+                    <Text style={{fontSize: 16}}>{props.description}</Text>
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 

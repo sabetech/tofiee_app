@@ -1,9 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 
 const MiniCard = (props) =>{
-    return (
+    const navigation = useNavigation();
+   return (
+    <TouchableOpacity
+        onPress = {() => {
+            navigation.navigate("videoPlayer", {videoId:props.videoId, title:props.title})
+            }
+        }
+    >
         <View style={styles.mini_card}>
             <Image 
             source={{uri: `https://i.ytimg.com/vi/${props.videoId}/mqdefault.jpg`}} 
@@ -27,6 +36,7 @@ const MiniCard = (props) =>{
                 </Text>
             </View>
         </View>
+    </TouchableOpacity>
     )
 }
 
